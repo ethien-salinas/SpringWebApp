@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- configuration file for LogBack (slf4J implementation)
+See here for more details: http://gordondickens.com/wordpress/2013/03/27/sawing-through-the-java-loggers/ -->
+<configuration scan="true" scanPeriod="30 seconds">
+
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+        <resetJUL>true</resetJUL>
+    </contextListener>
+
+    <!-- To enable JMX Management -->
+    <jmxConfigurator/>
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%highlight([%-5level]) %magenta([%date{ISO8601}]) %yellow([%X{thread}]) %magenta([%class->%method:%line]) | %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="system_appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    	<file>/movile-logs/EthienSimpleSpringWebMaven/system.log</file>
+    	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/movile-logs/EthienSimpleSpringWebMaven/system.log.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+        <encoder>
+            <pattern>%highlight([%-5level]) %magenta([%date{ISO8601}]) %yellow([%X{thread}]) %magenta([%class->%method:%line]) | %msg%n</pattern>
+        </encoder>
+    </appender>
+	<logger name="system" level="debug">
+		<appender-ref ref="system_appender" />
+	</logger>
+
+    <appender name="exception_appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    	<file>/movile-logs/EthienSimpleSpringWebMaven/exception.log</file>
+    	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/movile-logs/EthienSimpleSpringWebMaven/exception.log.%d{yyyy-MM-dd}.zip</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+        <encoder>
+            <pattern>%highlight([%-5level]) %magenta([%date{ISO8601}]) %yellow([%X{thread}]) %magenta([%class->%method:%line]) | %msg%n</pattern>
+        </encoder>
+    </appender>
+	<logger name="exception" level="debug">
+		<appender-ref ref="exception_appender" />
+	</logger>
+
+
+    <appender name="dao_appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    	<file>/movile-logs/EthienSimpleSpringWebMaven/dao.log</file>
+    	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/movile-logs/EthienSimpleSpringWebMaven/dao.log.%d{yyyy-MM-dd}.zip</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+        <encoder>
+            <pattern>%highlight([%-5level]) %magenta([%date{ISO8601}]) %yellow([%X{thread}]) %magenta([%class->%method:%line]) | %msg%n</pattern>
+        </encoder>
+    </appender>
+	<logger name="dao" level="debug">
+		<appender-ref ref="dao_appender" />
+	</logger>
+
+    <root level="info">
+        <appender-ref ref="console"/>
+    </root>
+</configuration>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

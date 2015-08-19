@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+    
+    <context:annotation-config/>
+	<context:component-scan
+            base-package="com.auribox.web.handler,com.auribox.db.dao"/>
+            
+	<bean id="homero" class="org.auribox.model.Persona">
+		<property name="nombre" value="Homero Simpson"></property>
+		<property name="edad" value="31"></property>
+		<property name="direccion">
+			<bean class="org.auribox.model.Direccion">
+				<property name="calle" value="Av Siempre Viva"></property>
+				<property name="numExt" value="123"></property>
+				<property name="colonia" value="Centro"></property>
+			</bean>
+		</property>
+	</bean>	
+
+	<bean name="personas" class="org.auribox.model.Personas">
+		<property name="personas">
+			<list>
+				<bean class="org.auribox.model.Persona">
+					<property name="nombre" value="Homero Simpson"></property>
+					<property name="edad" value="31"></property>
+					<property name="direccion" ref="simpsonFamilyAddress"></property>
+				</bean>
+				<bean class="org.auribox.model.Persona">
+					<property name="nombre" value="Marge Simpson"></property>
+					<property name="edad" value="30"></property>
+					<property name="direccion" ref="simpsonFamilyAddress"></property>
+				</bean>
+				<bean class="org.auribox.model.Persona">
+					<property name="nombre" value="Bart Simpson"></property>
+					<property name="edad" value="10"></property>
+					<property name="direccion" ref="simpsonFamilyAddress"></property>
+				</bean>
+				<bean class="org.auribox.model.Persona">
+					<property name="nombre" value="Lisa Simpson"></property>
+					<property name="edad" value="8"></property>
+					<property name="direccion" ref="simpsonFamilyAddress"></property>
+				</bean>
+				<bean class="org.auribox.model.Persona">
+					<property name="nombre" value="Maggy Simpson"></property>
+					<property name="edad" value="1"></property>
+					<property name="direccion" ref="simpsonFamilyAddress"></property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="simpsonFamilyAddress" class="org.auribox.model.Direccion">
+		<property name="calle" value="Av Siempre Viva"></property>
+		<property name="numExt" value="123"></property>
+		<property name="colonia" value="Centro"></property>
+	</bean>
+
+</beans>
